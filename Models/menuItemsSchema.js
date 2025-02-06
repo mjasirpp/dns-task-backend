@@ -13,6 +13,11 @@ const menuItemsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    menuId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Menu',
+        required: true
+    },
 })
 
 const menuItems = mongoose.model("menuItems",menuItemsSchema)

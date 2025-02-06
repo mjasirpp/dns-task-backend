@@ -1,7 +1,7 @@
 const menu = require('../Models/menuSchema')
 
-exports.create = async(req, res)=>{
-    console.log('inside create controller');
+exports.createMenu = async(req, res)=>{
+    console.log('inside createMenu controller');
     const{ name, description} = req.body
     try{
         const menuExists = await menu.findOne({name})
@@ -15,5 +15,15 @@ exports.create = async(req, res)=>{
     }catch (error){
         res.status(400);
         throw new Error("invalid data");
+    }
+}
+
+exports.getAllMenu = async(req, res)=>{
+    console.log('inside getAllMenu controller');
+    try{
+        const Menu = await menu.find();
+        res.status(200).json(Menu);
+    }catch (error){
+        res.status(500).json({ error: error.message });
     }
 }
